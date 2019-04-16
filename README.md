@@ -52,8 +52,8 @@ Status Visit(ElemType c)
 
 ## 自定义Scanf函数
 
-> 自定义的数据录入函数，用于从文件fp中读取格式化的输入。
-> 与fscanf不同之处在于此函数只会读取西文字符，对于中文字符，则会跳过。 
+>自定义的数据录入函数，用于从文件fp中读取格式化的输入。
+>与fscanf不同之处在于此函数只会读取西文字符，对于中文字符，则会跳过。 
 
 
 
@@ -68,38 +68,39 @@ Status Visit(ElemType c)
 
 ### 引用 <stdarg.h> 头文件的va_list、va_start、va_arg、va_end
 
-> 例如：
-> void ConnectData(int i,...);
-> 在上面的代码中，编译器只检查第一个参数是否为整型，而不对其他参数进行检查。
-> 对于可变参数的函数，需要进行特殊的处理。首先需要==引用 <stdarg.h> 头文件==，然后利用va_list类型和va_start、va_arg、va_end 3个宏读取传递到函数中的参数值。  
+>  例如：
+>  void ConnectData(int i,...);
+>  在上面的代码中，编译器只检查第一个参数是否为整型，而不对其他参数进行检查。
+>  对于可变参数的函数，需要进行特殊的处理。首先需要==引用 <stdarg.h> 头文件==，然后利用va_list类型和va_start、va_arg、va_end 3个宏读取传递到函数中的参数值。  
 >
-> ```c++
-> #include <stdarg.h>							//提供宏va_list、va_start、va_arg、va_end
-> ```
+>  ```c++
+>  #include <stdarg.h>							//提供宏va_list、va_start、va_arg、va_end
+>  ```
+>  
 >
-> 这几个宏的定义如下（在 ANSI C 中）：
+>  这几个宏的定义如下（在 ANSI C 中）：
 >
-> ```c++
-> type va_arg( va_list arg_ptr, type );
-> void va_end( va_list arg_ptr );
-> void va_start( va_list arg_ptr, prev_param ); 
-> ```
+>  ```c++
+>  type va_arg( va_list arg_ptr, type );
+>  void va_end( va_list arg_ptr );
+>  void va_start( va_list arg_ptr, prev_param ); 
+>  ```
 >
-> #### va_start函数
+>  #### va_start函数
 >
-> va_start函数将参数arg_ptr设置为可变参数列表的第一个参数。参数arg_ptr的类型必须为va_list。参数prev_param是在可变参数列表之前的那一个参数。（也就是说在 ANSI C 中，如果一个函数有可变参数，那么在该可变参数前必须有一个明确定义的参数，否则无法调用函数 va_start ，例如函数 int add(int i,...）是合法的，而函数 int add(...)是不合法的。）
+>  va_start函数将参数arg_ptr设置为可变参数列表的第一个参数。参数arg_ptr的类型必须为va_list。参数prev_param是在可变参数列表之前的那一个参数。（也就是说在 ANSI C 中，如果一个函数有可变参数，那么在该可变参数前必须有一个明确定义的参数，否则无法调用函数 va_start ，例如函数 int add(int i,...）是合法的，而函数 int add(...)是不合法的。）
 >
-> 
+>  
 >
-> #### va_arg函数
+>  #### va_arg函数
 >
-> va_arg函数将返回 arg_ptr 所指位置的值，并将 arg_ptr 指向下一个参数
+>  va_arg函数将返回 arg_ptr 所指位置的值，并将 arg_ptr 指向下一个参数
 >
-> 
+>  
 >
-> #### va_end函数
+>  #### va_end函数
 >
-> 检索完所有参数后，va_end将指针重置为NULL。
+>  检索完所有参数后，va_end将指针重置为NULL。
 
 
 
@@ -214,6 +215,7 @@ int Scanf(FILE *fp, char *format, ...)
 
 
 
+
 ## 顺序线性表（数组）
 
 
@@ -264,7 +266,6 @@ Status ClearList(SqList *L)
     L->length=0;
     return OK;
 }
-
 ```
 
 
@@ -276,7 +277,6 @@ int ListLength(SqList L)
 {
 	return L.length;
 }
-
 ```
 
 
@@ -292,7 +292,6 @@ Status GetElem(SqList L,int i,ElemType *e)
 
     return OK;
 }
-
 ```
 
 
@@ -315,7 +314,6 @@ int LocateElem(SqList L,ElemType e)
 
     return i+1;
 }
-
 ```
 
 
@@ -341,7 +339,6 @@ Status ListInsert(SqList *L,int i,ElemType e)
 
 	return OK;
 }
-
 ```
 
 
@@ -365,7 +362,6 @@ Status ListDelete(SqList *L,int i,ElemType *e)
     L->length--;
     return OK;
 }
-
 ```
 
 
@@ -381,7 +377,6 @@ Status ListTraverse(SqList L)
     printf("\n");
     return OK;
 }
-
 ```
 
 
@@ -402,7 +397,6 @@ void unionL(SqList *La,SqList Lb)
 			ListInsert(La,++La_len,e);
 	}
 }
-
 ```
 
 
@@ -419,12 +413,11 @@ typedef struct
     ElemType data;
     int cur;  /* 游标(Cursor) ，为0时表示无指向 */
 } Component,StaticLinkList[MAXSIZE];
-
 ```
 
 
 
-### 将一维数组space中各分量链成一个备用链表，space[0].cur为头指针，"0"表示空指针 
+###  将一维数组space中各分量链成一个备用链表，space[0].cur为头指针，"0"表示空指针 
 
 ```c++
 Status InitList(StaticLinkList space) 
@@ -435,7 +428,6 @@ Status InitList(StaticLinkList space)
 	space[MAXSIZE-1].cur = 0; /* 目前静态链表为空，最后一个元素的cur为0 */
 	return OK;
 }
-
 ```
 
 
@@ -453,7 +445,6 @@ int Malloc_SSL(StaticLinkList space)
 	                                        /* 分量用来做备用 */
 	return i;
 }
-
 ```
 
 
@@ -466,7 +457,6 @@ void Free_SSL(StaticLinkList space, int k)
     space[k].cur = space[0].cur;    /* 把第一个元素的cur值赋给要删除的分量cur */
     space[0].cur = k;               /* 把要删除的分量下标赋值给第一个元素的cur */
 }
-
 ```
 
 
@@ -485,7 +475,6 @@ int ListLength(StaticLinkList L)
     }
     return j;
 }
-
 ```
 
 
@@ -511,7 +500,6 @@ Status ListInsert(StaticLinkList L, int i, ElemType e)
     }   
     return ERROR;   
 }
-
 ```
 
 
@@ -532,7 +520,6 @@ Status ListDelete(StaticLinkList L, int i)
     Free_SSL(L, j);   
     return OK;   
 } 
-
 ```
 
 
@@ -554,7 +541,6 @@ Status ListTraverse(StaticLinkList L)
     printf("\n");
     return OK;
 }
-
 ```
 
 
@@ -568,6 +554,7 @@ Status ListTraverse(StaticLinkList L)
 ### 类型定义
 
 ```c++
+
 #define LIST_INIT_SIZE 100				//顺序表存储空间的初始分配量 
 #define LISTINCREMENT  10				//顺序表存储空间的分配增量
 
@@ -579,7 +566,6 @@ typedef struct
 	int length;							//当前顺序表长度 
 	int listsize;						//当前分配的存储容量 
 }SqList;
-
 ```
 
 
@@ -598,7 +584,6 @@ Status InitList_Sq(SqList *L)
 
 	return OK;							//初始化成功	 
 } 
-
 ```
 
 
@@ -610,7 +595,6 @@ void ClearList_Sq(SqList *L)
 {
 	(*L).length = 0;
 }
-
 ```
 
 
@@ -626,7 +610,6 @@ void DestroyList_Sq(SqList *L)
 	(*L).length = 0;
 	(*L).listsize = 0;
 }
-
 ```
 
 
@@ -638,7 +621,6 @@ Status ListEmpty_Sq(SqList L)
 {
 	return 	L.length==0 ? TRUE : FALSE;
 }
-
 ```
 
 
@@ -650,7 +632,6 @@ int ListLength_Sq(SqList L)
 {
 	return L.length;	
 }
-
 ```
 
 
@@ -667,7 +648,6 @@ Status GetElem_Sq(SqList L, int i, LElemType_Sq *e)
 
 	return OK;
 }
-
 ```
 
 
@@ -687,7 +667,6 @@ int LocateElem_Sq(SqList L, LElemType_Sq e, Status(Compare)(LElemType_Sq, LElemT
 	else
 		return 0; 
 }
-
 ```
 
 
@@ -713,7 +692,6 @@ Status PriorElem_Sq(SqList L, LElemType_Sq cur_e, LElemType_Sq *pre_e)
 			
 	return ERROR;
 }
-
 ```
 
 
@@ -736,7 +714,6 @@ Status NextElem_Sq(SqList L, LElemType_Sq cur_e, LElemType_Sq *next_e)
 
 	return ERROR;
 }
-
 ```
 
 
@@ -772,7 +749,6 @@ Status ListInsert_Sq(SqList *L, int i, LElemType_Sq e)
 
 	return OK; 
 }
-
 ```
 
 
@@ -798,7 +774,6 @@ Status ListDelete_Sq(SqList *L, int i, LElemType_Sq *e)
 
 	return OK;
 }
-
 ```
 
 
@@ -815,7 +790,6 @@ Status ListTraverse_Sq(SqList L, void(Visit)(LElemType_Sq))
 	
 	return OK;
 }
-
 ```
 
 
@@ -861,6 +835,7 @@ Status ListTraverse_Sq(SqList L, void(Visit)(LElemType_Sq))
 ### 类型定义
 
 ```c++
+
 #define STACK_INIT_SIZE	100				//顺序栈存储空间的初始分配量
 #define STACKINCREMENT	10 				//顺序栈存储空间的分配增量
 
@@ -872,7 +847,6 @@ typedef struct
 	SElemType_Sq *top;				//栈顶指针 
 	int stacksize;					//当前已分配的存储空间，以元素为单位 
 }SqStack;
-
 ```
 
 
@@ -905,7 +879,6 @@ Status InitStack_Sq(SqStack *S)
 	
 	return OK;
 }
-
 ```
 
 
@@ -936,12 +909,12 @@ Status DestroyStack_Sq(SqStack *S)
 	
 	return OK;
 } 
-
 ```
 
 
 
 ### 清空栈
+
 
 ```c++
 Status ClearStack_Sq(SqStack &S)
@@ -959,7 +932,6 @@ Status ClearStack_Sq(SqStack *S)
 	
 	return OK;
 } 
-
 ```
 
 
@@ -978,12 +950,12 @@ Status StackEmpty_Sq(SqStack S)
 //*******************
 
 
-
 ```
 
 
 
 ### 计算栈的长度
+
 
 ```c++
 int StackLength_Sq(SqStack S)
@@ -994,12 +966,12 @@ int StackLength_Sq(SqStack S)
 //*******************
 
 
-
 ```
 
 
 
 ### 得到栈顶元素
+
 
 ```c++
 Status GetTop_Sq(SqStack S, SElemType_Sq &e)
@@ -1025,12 +997,12 @@ Status GetTop_Sq(SqStack S, SElemType_Sq *e)
 	return OK;
 
 } 
-
 ```
 
 
 
 ### 入栈
+
 
 ```c++
 Status Push_Sq(SqStack &S, SElemType_Sq e)
@@ -1068,12 +1040,12 @@ Status Push_Sq(SqStack *S, SElemType_Sq e)
 
 	return OK;
 } 
-
 ```
 
 
 
 ### 出栈
+
 
 ```c++
 Status Pop_Sq(SqStack &S, SElemType_Sq &e)
@@ -1099,12 +1071,12 @@ Status Pop_Sq(SqStack *S, SElemType_Sq *e)
 
 	return OK;
 } 
-
 ```
 
 
 
 ### 遍历栈中元素
+
 
 ```c++
 Status StackTraverse_Sq(SqStack S, void(Visit)(SElemType_Sq))
@@ -1118,7 +1090,6 @@ Status StackTraverse_Sq(SqStack S, void(Visit)(SElemType_Sq))
 }
 
 //*******************
-
 
 
 ```
@@ -1151,7 +1122,6 @@ typedef struct
 	QueuePtr front;					//头指针 
 	QueuePtr rear;					//尾指针 
 }LinkQueue;							//队列的链式存储表示
-
 ```
 
 
@@ -1182,7 +1152,6 @@ Status InitQueue_L(LinkQueue *Q)
 
 	return OK;
 }
-
 ```
 
 
@@ -1219,12 +1188,12 @@ void ClearQueue_L(LinkQueue *Q)
 	
 	(*Q).rear = (*Q).front;
 }
-
 ```
 
 
 
 ### 销毁队列
+
 
 ```c++
 void DestroyQueue_L(LinkQueue &Q)
@@ -1248,12 +1217,12 @@ void DestroyQueue_L(LinkQueue *Q)
 		(*Q).front = (*Q).rear;	
 	}
 }
-
 ```
 
 
 
 ### 判断队列是否为空
+
 
 ```c++
 Status QueueEmpty_L(LinkQueue Q)
@@ -1267,12 +1236,12 @@ Status QueueEmpty_L(LinkQueue Q)
 //*******************
 
 
-
 ```
 
 
 
 ### 计算队列的长度
+
 
 ```c++
 int QueueLength_L(LinkQueue Q)
@@ -1292,12 +1261,12 @@ int QueueLength_L(LinkQueue Q)
 //*******************
 
 
-
 ```
 
 
 
 ### 得到队头元素
+
 
 ```c++
 Status GetHead_L(LinkQueue Q, QElemType_L &e)
@@ -1327,12 +1296,12 @@ Status GetHead_L(LinkQueue Q, QElemType_L *e)
 	
 	return OK;
 } 
-
 ```
 
 
 
 ### 入队
+
 
 ```c++
 Status EnQueue_L(LinkQueue &Q, QElemType_L e)
@@ -1370,12 +1339,12 @@ Status EnQueue_L(LinkQueue *Q, QElemType_L e)
 
 	return OK;
 } 
-
 ```
 
 
 
 ### 出队
+
 
 ```c++
 Status DeQueue_L(LinkQueue &Q, QElemType_L &e)
@@ -1417,12 +1386,12 @@ Status DeQueue_L(LinkQueue *Q, QElemType_L *e)
 	
 	return OK;
 } 
-
 ```
 
 
 
 ### 遍历非循环队列
+
 
 ```c++
 void QueueTraverse_L(LinkQueue Q, void (Visit)(QElemType_L))
@@ -1441,7 +1410,6 @@ void QueueTraverse_L(LinkQueue Q, void (Visit)(QElemType_L))
 //*******************
 
 
-
 ```
 
 
@@ -1450,7 +1418,7 @@ void QueueTraverse_L(LinkQueue Q, void (Visit)(QElemType_L))
 
 ## 循环队列（不设头指针）
 
-> **假设以带头结点的循环链表表示队列，并且只设一个指针指向队尾元素结点（注意不设头指针）**
+>**假设以带头结点的循环链表表示队列，并且只设一个指针指向队尾元素结点（注意不设头指针）**
 
 
 
@@ -1469,7 +1437,6 @@ typedef struct
 {
 	QueuePtr rear;					//尾指针 
 }LinkQueue;							//队列的链式存储表示
-
 ```
 
 
@@ -1490,7 +1457,6 @@ Status InitQueue_L(LinkQueue *Q)					//队列初始化
 
 	return OK;
 }
-
 ```
 
 
@@ -1513,7 +1479,6 @@ Status EnQueue_L(LinkQueue *Q, QElemType e)	//入队
 
 	return OK;
 } 
-
 ```
 
 
@@ -1541,7 +1506,6 @@ Status DeQueue_L(LinkQueue *Q, QElemType *e)	//出队
 
 	return OK;
 }
-
 ```
 
 
@@ -1556,7 +1520,6 @@ void Output_L(LinkQueue Q)
 	for(p=Q.rear->next->next; p!=Q.rear->next; p=p->next)
 		printf("%d ", p->data);
 }
-
 ```
 
 
@@ -1579,7 +1542,6 @@ typedef struct
 	int rear;
 	int tag;							//0表示空，1表示满 
 }SqQueue;
-
 ```
 
 
@@ -1596,7 +1558,6 @@ Status InitQueue_L(SqQueue *Q)
 	(*Q).front = (*Q).rear = 0;
 	(*Q).tag = 0;
 }
-
 ```
 
 
@@ -1617,7 +1578,6 @@ Status EnQueue_L(SqQueue *Q, QElemType e)
 
 	return OK;
 }
-
 ```
 
 
@@ -1638,7 +1598,6 @@ Status DeQueue_L(SqQueue *Q, QElemType *e)
 
 	return OK;
 }
-
 ```
 
 
@@ -1653,7 +1612,6 @@ void Output_L(SqQueue Q)
 	for(i=Q.front; i!=Q.rear; i=(i+1)%MAXQSIZE)
 		printf("%d ", Q.base[i]);
 }
-
 ```
 
 
@@ -1671,7 +1629,6 @@ typedef struct
 	char *ch;							//若是非空串，则按串长分配存储区，否则ch为NULL 
 	int length;
 }HString;
-
 ```
 
 
@@ -1684,7 +1641,6 @@ void InitString_H(HString *S)
 	(*S).ch = NULL;
 	(*S).length = 0;
 }
-
 ```
 
 
@@ -1716,7 +1672,6 @@ Status StrAssign_H(HString *T, char *chars)
 
 	return OK;
 } 
-
 ```
 
 
@@ -1744,7 +1699,6 @@ Status StrCopy_H(HString *T, HString S)
 
 	return OK;
 }
-
 ```
 
 
@@ -1759,7 +1713,6 @@ Status StrEmpty_H(HString S)
 	else
 		return FALSE;
 }
-
 ```
 
 
@@ -1779,7 +1732,6 @@ Status StrCompare_H(HString S, HString T)
 
 	return S.length-T.length;
 }
-
 ```
 
 
@@ -1794,7 +1746,6 @@ int StrLength_H(HString S)
 	else
 		return S.length;
 }
-
 ```
 
 
@@ -1814,7 +1765,6 @@ Status ClearString_H(HString *S)
 
 	return OK;
 }
-
 ```
 
 
@@ -1842,7 +1792,6 @@ Status Concat_H(HString *T, HString S1, HString S2)
 	
 	return OK;
 }
-
 ```
 
 
@@ -1876,7 +1825,6 @@ Status SubString_H(HString *Sub, HString S, int pos, int len)
 
 	return OK;
 }
-
 ```
 
 
@@ -1910,7 +1858,6 @@ int Index_H(HString S, HString T, int pos)
 
 	return 0;
 }
-
 ```
 
 
@@ -1940,7 +1887,6 @@ Status Replace_H(HString *S, HString T, HString V)
 
 	return OK;
 }
-
 ```
 
 
@@ -1974,7 +1920,6 @@ Status StrInsert_H(HString *S, int pos, HString T)
 
 	return OK; 
 }
-
 ```
 
 
@@ -2001,7 +1946,6 @@ Status StrDelete_H(HString *S, int pos, int len)
 
 	return OK;
 }
-
 ```
 
 
@@ -2013,7 +1957,6 @@ void DestroyString_H(HString *S)
 {
 	//堆串不能被销毁
 }
-
 ```
 
 
@@ -2031,7 +1974,6 @@ void StrPrint_H(HString S)
 	for(i=0; i<S.length; i++)
 		printf("%c", S.ch[i]);
 }
-
 ```
 
 
@@ -2044,7 +1986,6 @@ void StrPrint_H(HString S)
 
 ```c++
 #define MAXSIZE 400							//假设非零元个数的最大值为400
-
 ```
 
 
@@ -2064,7 +2005,6 @@ typedef struct
 	Triple data[MAXSIZE+1];					//非零元三元组表，data[0]未用
 	int mu, nu, tu;							//矩阵的行数、列数和非零元个数
 }TSMatrix;
-
 ```
 
 
@@ -2097,7 +2037,6 @@ Status CreateSMatrix_T(FILE *fp, int n, ...)
 	
 	return OK;	
 }
-
 ```
 
 
@@ -2111,7 +2050,6 @@ void DestroySMatrix_T(TSMatrix *M)
 	(*M).nu = 0;
 	(*M).tu = 0;
 }
-
 ```
 
 
@@ -2139,7 +2077,6 @@ void PrintSMatrix_T(TSMatrix M)
 		printf("\n");
 	}	
 }
-
 ```
 
 
@@ -2151,7 +2088,6 @@ void CopySMatrix_T(TSMatrix M, TSMatrix *T)
 {
 	(*T) = M;								//结构可以直接复制 
 }
-
 ```
 
 
@@ -2239,7 +2175,6 @@ Status AddSMatri_T(TSMatrix M, TSMatrix N, TSMatrix *Q)
 	
 	return OK;
 }
-
 ```
 
 
@@ -2333,7 +2268,6 @@ Status SubSMatrix_T(TSMatrix M, TSMatrix N, TSMatrix *Q)
 	
 	return OK;	
 }
-
 ```
 
 
@@ -2402,7 +2336,6 @@ Status MultSMatrix_T(TSMatrix M, TSMatrix N, TSMatrix *Q)
 	
 	return OK;
 }
-
 ```
 
 
@@ -2436,7 +2369,6 @@ void TransposeSMatrix_T(TSMatrix M, TSMatrix *T)
 		}
 	}
 }
-
 ```
 
 
@@ -2477,7 +2409,6 @@ void FastTransposeSMatrix_T(TSMatrix M, TSMatrix *T)
 		}
 	}
 }
-
 ```
 
 
@@ -2488,7 +2419,7 @@ void FastTransposeSMatrix_T(TSMatrix M, TSMatrix *T)
 
 
 
-### 二叉树（二叉链表存储）相关类型定义
+## 1、二叉树（二叉链表存储）相关类型定义
 
 ```c++
 typedef char TElemType;							//假设二叉树元素均为字符
@@ -2499,24 +2430,22 @@ typedef struct BiTNode
 	struct BiTNode* rchild;						//右孩子指针 
 }BiTNode;										//二叉树结点 
 typedef BiTNode* BiTree;						//指向二叉树结点的指针
-
 ```
 
 
 
-#### 栈元素类型
+### 栈元素类型
 
 ```c++
 typedef BiTree SElemType_Sq;					//重定义栈元素类型 
 #include "../../▲03 栈和队列/01 SequenceStack/SequenceStack.c"	//**▲03 栈和队列**// 
 
 要用到栈的类型定义
-
 ```
 
 
 
-#### 存储当前结点信息，按树结构打印树的时候使用
+### 存储当前结点信息，按树结构打印树的时候使用
 
 ```c++
 typedef struct									
@@ -2525,7 +2454,6 @@ typedef struct
 	BiTree right;								//当前结点的右指针 
 	int n;										//当前结点的次序 
 }Node;
-
 ```
 
 
@@ -2537,7 +2465,6 @@ void InitBiTree(BiTree *T)
 {
 	*T = NULL;
 }
-
 ```
 
 
@@ -2559,7 +2486,6 @@ void ClearBiTree(BiTree *T)
 		*T = NULL;												//置空树指针 
 	} 
 }
-
 ```
 
 
@@ -2571,7 +2497,6 @@ void DestroyBiTree(BiTree *T)
 {
 	//二叉树无法销毁 
 }
-
 ```
 
 
@@ -2583,7 +2508,6 @@ Status BiTreeEmpty(BiTree T)
 {
 	return T==NULL ? TRUE : ERROR;
 } 
-
 ```
 
 
@@ -2611,7 +2535,6 @@ Status CreateBiTree(FILE *fp, BiTree *T)
 	
 	return OK;
 }
-
 ```
 
 
@@ -2637,7 +2560,6 @@ BiTree f(FILE *fp, BiTree *T)
 		CreateBiTree(fp, &(*T)->rchild);
 	}
 }
-
 ```
 
 
@@ -2691,7 +2613,6 @@ int BiTreeLength(BiTree T)
 	
 	return len;
 }
-
 ```
 
 
@@ -2713,7 +2634,6 @@ int BiTreeDepth(BiTree T)
 		return (LD>=RD?LD:RD)+1;
 	}
 }
-
 ```
 
 
@@ -2731,7 +2651,6 @@ Status Root(BiTree T, TElemType *e)
 		return OK;
 	}
 } 
-
 ```
 
 
@@ -2743,7 +2662,6 @@ TElemType Value(BiTree p)
 {
 	return p->data;
 }
-
 ```
 
 
@@ -2755,7 +2673,6 @@ void Assign(BiTree p, TElemType value)
 {
 	p->data = value;
 }
-
 ```
 
 
@@ -2800,7 +2717,6 @@ TElemType Parent(BiTree T, TElemType e)
 	if(i<0)
 		return '\0';	
 }
-
 ```
 
 
@@ -2849,7 +2765,6 @@ TElemType LeftChild(BiTree T, TElemType e)
 	if(i<0)
 		return '\0';	
 }
-
 ```
 
 
@@ -2897,7 +2812,6 @@ TElemType RightChild(BiTree T, TElemType e)
 	if(i<0)
 		return '\0';
 }
-
 ```
 
 
@@ -2948,7 +2862,6 @@ TElemType LeftSibling(BiTree T, TElemType e)
 	if(i<0)
 		return '\0';
 }
-
 ```
 
 
@@ -2998,7 +2911,6 @@ TElemType RightSibling(BiTree T, TElemType e)
 	if(i<0)
 		return '\0';
 }
-
 ```
 
 
@@ -3046,7 +2958,6 @@ BiTree LocationBiTree_1(BiTree T, TElemType e)
 	if(i<0)
 		return NULL;
 }
-
 ```
 
 
@@ -3074,7 +2985,6 @@ BiTree LocationBiTree_2(BiTree T, TElemType e)
 	
 	return p;
 }
-
 ```
 
 
@@ -3096,7 +3006,6 @@ Status InsertBiTree(BiTree T, TElemType e, BiTree T0, int LR)
 	
 	return ERROR;	
 }
-
 ```
 
 
@@ -3117,7 +3026,6 @@ Status DeleteBiTree(BiTree T, TElemType e, int LR)
 	
 	return ERROR;
 }
-
 ```
 
 
@@ -3125,10 +3033,10 @@ Status DeleteBiTree(BiTree T, TElemType e, int LR)
 ### 层序遍历二叉树_1（利用数组实现）
 
 ```c++
-void LevelOrderTraverse_1(BiTree T, void(Visit)(TElemType))
+void LevelOrderTraverse_1(BiTree T, void(Visit)(TElemType))//用printf打印可以不用Visit函数
 {
 	int i, j;
-	BiTree p[100];					//树指针数组
+	BiTree p[100];					//树指针数组，用来模拟队列
 	
 	i = j = 0;
 	
@@ -3137,7 +3045,7 @@ void LevelOrderTraverse_1(BiTree T, void(Visit)(TElemType))
 		
 	while(i<j)
 	{
-		Visit(p[i]->data);
+		Visit(p[i]->data);//或者	printf("%c ", p[i]->data);
 		if(p[i]->lchild)
 			p[j++] = p[i]->lchild;
 		if(p[i]->rchild)
@@ -3145,7 +3053,6 @@ void LevelOrderTraverse_1(BiTree T, void(Visit)(TElemType))
 		i++;		
 	}
 }
-
 ```
 
 
@@ -3176,7 +3083,6 @@ Status LevelOrderTraverse_2(BiTree T, Status (*visit)(TElemType e))
 	}
 	return OK;
 }
-
 ```
 
 
@@ -3195,7 +3101,6 @@ void PreOrderTraverse_1(BiTree T, void(Visit)(TElemType))
 		PreOrderTraverse_1(T->rchild, Visit);
 	}
 }
-
 ```
 
 
@@ -3217,7 +3122,6 @@ Status PreOrderTraverse_2(BiTree T, Status(Visit)(TElemType))
 	else
 		return ERROR;
 }
-
 ```
 
 
@@ -3258,7 +3162,6 @@ void PreOrderTraverse_3(BiTree T)
 		}
 	}
 }
-
 ```
 
 
@@ -3289,7 +3192,6 @@ Status PreOrderTraverse_4(BiTree T, Status (*visit)(TElemType e))
 	}
 	return OK;
 }
-
 ```
 
 
@@ -3308,7 +3210,6 @@ void InOrderTraverse_1(BiTree T, void(Visit)(TElemType))
 		InOrderTraverse_1(T->rchild, Visit);
 	}
 }
-
 ```
 
 
@@ -3341,7 +3242,6 @@ Status InOrderTraverse_2(BiTree T, Status(Visit)(TElemType))
 	}
 	return OK;	 
 }
-
 ```
 
 
@@ -3374,7 +3274,6 @@ Status InOrderTraverse_3(BiTree T, Status(Visit)(TElemType))
 	}
 	return OK;	
 }
-
 ```
 
 
@@ -3391,7 +3290,6 @@ void PostOrderTraverse(BiTree T, void(Visit)(TElemType))
 		Visit(T->data);
 	}
 }
-
 ```
 
 
@@ -3444,7 +3342,6 @@ void PostOrderTraverse_1(BiTree T)
 			break;
 	}		
 }
-
 ```
 
 
@@ -3489,7 +3386,6 @@ Status PostOrderTraverse_2(BiTree T, Status (*visit)(TElemType e))
 
 	return OK;
 }
-
 ```
 
 
@@ -3542,8 +3438,1100 @@ void PrintTree(BiTree T)
 		}
 	}
 } 
-
 ```
+
+
+
+### 求先序序列中第k个结点的值
+
+```c++
+Status Algo_6_41(BiTree T, TElemType *e, int *order, int k)	//order用来计数 
+{
+	if(T)
+	{
+		(*order)++;
+		
+		if(*order==k)
+		{
+			*e = T->data;		
+			return OK;					
+		}
+		else
+		{		
+			if(Algo_6_41(T->lchild, e, order, k))
+				return OK;
+			if(Algo_6_41(T->rchild, e, order, k))
+				return OK;
+		}
+	}
+	
+	return ERROR;
+}
+```
+
+
+
+### 计算二叉树中叶子结点数目
+
+```c++
+int Algo_6_42(BiTree T)
+{
+	int count = 0;
+	
+	if(T)
+	{
+		if(T->lchild==NULL && T->rchild==NULL)
+			count++;
+		else
+		{
+			count += Algo_6_42(T->lchild);
+			count += Algo_6_42(T->rchild);
+		}	
+	}
+	
+	return count;	 
+}
+```
+
+
+
+### 交换二叉树的左右子树
+
+```c++
+void Algo_6_43(BiTree T)
+{
+	BiTree p;
+	
+	if(T)
+	{
+		p = T->lchild;
+		T->lchild = T->rchild;
+		T->rchild = p;
+
+		Algo_6_43(T->lchild);
+		Algo_6_43(T->rchild);
+	}
+}
+```
+
+
+
+### 求二叉树中以结点'x'为根的子树的深度
+
+```c++
+int Algo_6_44(BiTree T, TElemType x)
+{
+	 BiTree p;
+	 
+	 p = LocationBiTree_2(T, x);			//第一个递归求出x的位置，以指针形式返回
+	 //LocationBiTree_2(获取指向结点e的指针_2)
+	 return BiTreeDepth(p);				//第二个递归求出子树x的深度 
+}
+```
+
+
+
+### 删除元素值为'x'的结点（可能不止一个）及其子树
+
+```c++
+void Algo_6_45(BiTree *T, TElemType x)
+{
+	if(*T)
+	{
+		if((*T)->data==x)
+			ClearBiTree(T);						//递归清空子树 
+		else
+		{
+			Algo_6_45(&((*T)->lchild), x);		//递归向左右子树寻找 
+			Algo_6_45(&((*T)->rchild), x);
+		}
+	}
+}
+```
+
+
+
+### 复制二叉树的非递归算法
+
+```c++
+void Algo_6_46(BiTree T, BiTree *Tx)
+{
+	SqStack ST, STx;
+	SElemType_Sq e;
+	BiTree p, q;
+	 
+	if(!BiTreeEmpty(T))
+	{
+		InitStack_Sq(&ST);
+		InitStack_Sq(&STx);
+		
+		Push_Sq(&ST, T);
+		p = (BiTree)malloc(sizeof(BiTNode));
+		if(!p)
+			exit(OVERFLOW);
+		p->data = T->data;
+		*Tx = p;
+		Push_Sq(&STx, *Tx);
+		
+		while(!StackEmpty_Sq(ST))
+		{
+			GetTop_Sq(ST, &e);
+			GetTop_Sq(STx, &q);
+			
+			if(e->lchild)								//向左访问 
+			{
+				Push_Sq(&ST, e->lchild);
+				p = (BiTree)malloc(sizeof(BiTNode));
+				if(!p)
+					exit(OVERFLOW);
+				p->data = e->lchild->data;
+				q->lchild = p;
+				Push_Sq(&STx, q->lchild);			
+			}
+			else										//向右访问并回退 
+			{
+				q->lchild = NULL;
+				while(!StackEmpty_Sq(ST))
+				{
+					Pop_Sq(&ST, &e);
+					Pop_Sq(&STx, &q);
+										
+					if(e->rchild)
+					{	
+						Push_Sq(&ST, e->rchild);
+						p = (BiTree)malloc(sizeof(BiTNode));
+						if(!p)
+							exit(OVERFLOW);
+						p->data = e->rchild->data;
+						q->rchild = p;
+						Push_Sq(&STx, q->rchild);						
+						break;					
+					}
+					else
+						q->rchild = NULL;				
+				}
+			}
+		}
+	}
+}
+```
+
+
+
+### 遍历树寻找根结点到p结点的路径，path存储路径上各结点指针
+
+```c++
+Status FindPath_6_48(BiTree T, TElemType p, BiTree path[100])
+{
+	BiTNode node[100];
+	int i = 0;
+	
+	if(T==NULL)
+		return ERROR;
+	
+	path[i] = T;
+	node[i] = *T;
+		
+	while(i>=0)
+	{
+		while(node[i].lchild || path[i]->data==p)
+		{
+			if(path[i]->data==p)						//寻路成功 
+				return OK;
+			else
+			{
+				path[i+1] = node[i].lchild;
+				node[i+1] = *(node[i].lchild);
+				node[i].lchild = NULL;
+				i++;			
+			}
+		}
+		
+		if(node[i].rchild)
+		{
+			path[i+1] = node[i].rchild;
+			node[i+1] = *(node[i].rchild);
+			node[i].rchild = NULL;
+			i++;
+		}
+		else
+		{
+			path[i] = NULL;
+			i--;
+		}		
+	}
+	
+	if(i<0)												//寻路失败 
+		return ERROR;
+}
+```
+
+
+
+### 求两结点的共同祖先
+
+```c++
+BiTree Algo_6_48(BiTree T, TElemType p, TElemType q)		//p、q设为具体的元素，原理不变 
+{
+	BiTree path_1[100] = {};
+	BiTree path_2[100] = {}; 
+	int k, x;
+	
+	if(FindPath_6_48(T, p, path_1) && FindPath_6_48(T, q, path_2))	//借助于路径寻找函数 
+	{	
+		k = 0;
+		if(path_1[k]->data!=p && path_2[k]->data!=q)
+		{
+			while(path_1[k]->data==path_2[k]->data)
+				k++;
+			
+			return path_1[k-1];		
+		}
+	}
+
+	return NULL;
+}
+```
+
+
+
+### 判断二叉树是否为完全二叉树
+
+```c++
+Status Algo_6_49(BiTree T)
+{
+	int i, j;
+	BiTree p[100] = {};					//树指针数组，模拟队列 
+	int order[100] = {}; 
+	
+	i = j = 0;
+	
+	if(T)								//遍历的同时为各结点编号 
+	{
+		p[j] = T;	
+		order[j] = 1;
+		j++;
+		
+		while(i<j)
+		{
+			if(i>0 && order[i]>order[i-1]+1)
+				return ERROR;			//若结点序号不连续，则非完全二叉树 
+				
+			if(p[i]->lchild)
+			{
+				p[j] = p[i]->lchild;
+				order[j] = 2*order[i];
+				j++;			
+			}
+
+			if(p[i]->rchild)
+			{
+				p[j] = p[i]->rchild;
+				order[j] = 2*order[i]+1;
+				j++;
+			}
+			
+			i++;		
+		}
+	}
+	
+	return OK;
+} 
+```
+
+
+
+## 2、树的二叉链表（孩子-兄弟）类型定义
+
+```c++
+typedef char TElemType_CS;						//假设树中元素均为字符
+typedef struct CSNode
+{
+	TElemType_CS data;
+	struct CSNode* firstchild;					//指向孩子
+	struct CSNode* nextsibling;					//指向兄弟 
+}CSNode;
+typedef CSNode* CSTree;
+```
+
+
+
+### 自定义栈元素类型
+
+```c++
+typedef CSTree SElemType_Sq;
+#include "../../▲03 栈和队列/01 SequenceStack/SequenceStack.c"	//**▲03 栈和队列**// 
+
+要用到栈的定义
+```
+
+
+
+### 构造空树T (初始化树)
+
+```c++
+void InitTree_CS(CSTree *T)
+{
+	*T = NULL;
+}
+```
+
+
+
+### 清空树T
+
+```c++
+void ClearTree_CS(CSTree *T)
+{
+	if(*T)
+	{
+		if((*T)->firstchild)
+			ClearTree_CS(&(*T)->firstchild);
+		if((*T)->nextsibling)
+			ClearTree_CS(&(*T)->nextsibling);
+
+		free(*T);												//释放根结点 
+		
+		*T = NULL;
+	}
+}
+```
+
+
+
+### 销毁树T
+
+```c++
+void DestroyTree_CS(CSTree *T)
+{
+	//此存储结构二叉树无法销毁 
+}
+```
+
+
+
+### 判断树T是否为空
+
+```c++
+Status TreeEmpty_CS(CSTree T)
+{
+	return T==NULL ? TRUE : ERROR;
+} 
+```
+
+
+
+### 按先序序列构造树
+
+```c++
+Status CreateTree_CS(FILE *fp, CSTree *T)
+{
+	char ch;
+							
+	Scanf(fp, "%c", &ch);
+	
+	if(ch == '^')
+		*T = NULL;
+	else
+	{
+		*T = (CSTree)malloc(sizeof(CSNode));
+		if(!(*T))
+			exit(OVERFLOW);
+		(*T)->data = ch;
+		CreateTree_CS(fp, &(*T)->firstchild);
+		CreateTree_CS(fp, &(*T)->nextsibling);
+	}
+	
+	return OK;
+}
+```
+
+
+
+### 返回树的度
+
+```c++
+int TreeDegree_CS(CSTree T)
+{
+	int i, j, max, tmp;
+	CSTree Q[100];									//临时存放各结点 
+	
+	i = j = 0;
+	max = -1;
+	
+	if(T)
+	{
+		max = 0;
+		Q[j++] = T->firstchild;
+
+		while(i<j)									//按层序遍历 
+		{
+			tmp = 0;
+			
+			while(Q[i])
+			{
+				tmp++;	
+				
+				if(Q[i]->firstchild)				//存储有孩子的结点 
+					Q[j++] = Q[i]->firstchild;
+				
+				Q[i] = Q[i]->nextsibling;			//统计本层结点个数 
+			}
+			
+			if(tmp>max)
+				max = tmp;
+			
+			i++;
+		}
+	}
+	
+	return max;	
+}
+```
+
+
+
+### 返回树的深度
+
+```c++
+int TreeDepth_CS(CSTree T)
+{
+	int row, max;
+	SqStack S;
+	CSTree tmp;
+	
+	row = 0;
+	
+	if(T)
+	{
+		InitStack_Sq(&S);
+		Push_Sq(&S, T);
+		row = max = 1;
+		
+		while(!StackEmpty_Sq(S))
+		{
+			GetTop_Sq(S, &tmp);
+			
+			while(tmp->firstchild)
+			{
+				Push_Sq(&S, tmp->firstchild);
+				max++;
+				if(row<max)
+					row = max;
+				GetTop_Sq(S, &tmp);			
+			}
+			
+			Pop_Sq(&S, &tmp);
+			
+			if(tmp->nextsibling)
+				Push_Sq(&S, tmp->nextsibling);		
+			else
+			{
+				while(!StackEmpty_Sq(S))
+				{
+					Pop_Sq(&S, &tmp);
+					max--;
+														
+					if(tmp->nextsibling)
+					{
+						Push_Sq(&S, tmp->nextsibling);
+						break;
+					}				
+				}
+			}
+		}	
+	}
+	
+	return row;
+}
+```
+
+
+
+### 返回树的根结点值
+
+```c++
+TElemType_CS Root_CS(CSTree T)
+{
+	if(T)
+		return T->data;
+	else
+		return '\0';
+}
+```
+
+
+
+### 返回树中第i个结点值（按层序计数）
+
+```c++
+TElemType_CS Value_CS(CSTree T, int i)
+{
+	int m, n, count;
+	CSTree Q[100];
+	
+	if(T && i>0)
+	{
+		m = n = 0;
+		count = 0;	
+		Q[n++] = T;		
+		
+		while(m<n)
+		{
+			while(Q[m])
+			{
+				count++;
+				if(count==i)
+					return Q[m]->data;
+					
+				if(Q[m]->firstchild)
+					Q[n++] = Q[m]->firstchild;
+				
+				Q[m] = Q[m]->nextsibling;
+			}
+				
+			m++;
+		}
+	}
+	
+	return '\0';	
+}
+```
+
+
+
+### 返回指向结点e的指针，NULL代表无此结点
+
+```c++
+CSTree Order_CS(CSTree T, TElemType_CS e)
+{
+	int i, j, count;
+	CSTree Q[100];
+	
+	i = j = 0;
+	
+	if(T)
+	{
+		Q[j++] = T;
+		
+		while(i<j)
+		{
+			while(Q[i] && Q[i]->data!=e)
+			{
+				if(Q[i]->firstchild)
+					Q[j++] = Q[i]->firstchild;
+				
+				Q[i] = Q[i]->nextsibling;
+			}
+			
+			if(Q[i] && Q[i]->data==e)
+				return Q[i];
+				
+			i++;
+		}
+	}
+	
+	return NULL;	
+}
+```
+
+
+
+### 替换结点e的值为value
+
+```c++
+Status Assign_CS(CSTree T, TElemType_CS e, TElemType_CS value)
+{
+	int i, j, count;
+	CSTree p;
+	
+	p = Order_CS(T, e);
+		
+	if(p)								//找到了e
+	{
+		p->data = value;
+		return OK;
+	} 
+
+	return ERROR;
+}
+```
+
+
+
+### 返回结点e的第order个孩子的值（从左至右计数）
+
+```c++
+TElemType_CS ChildValue_CS(CSTree T, TElemType_CS e, int order)
+{
+	int i, j, count;
+	CSTree Q[100];
+	
+	count = -1;
+	i = j = 0;
+	
+	if(T)
+	{
+		Q[j++] = T;
+		
+		while(i<j)
+		{
+			while(Q[i] && Q[i]->data!=e)
+			{
+				if(Q[i]->firstchild)
+					Q[j++] = Q[i]->firstchild;
+				
+				Q[i] = Q[i]->nextsibling;
+			}
+			
+			if(Q[i] && Q[i]->data==e)
+				break;
+				
+			i++;
+		}
+		
+		if(i<j)								//找到了p
+		{
+			count = 0;
+			if(Q[i]->firstchild)
+			{
+				Q[i] = Q[i]->firstchild;
+				while(Q[i])
+				{
+					count++;
+					if(count==order)
+						return Q[i]->data;
+					Q[i] = Q[i]->nextsibling;
+				}
+			}
+		} 
+	}
+	
+	return '\0';	
+}
+```
+
+
+
+### 返回元素e的左（右）兄弟，mark标记左右
+
+```c++
+TElemType_CS Sibling_CS(CSTree T, TElemType_CS e, int mark)
+{
+	int i, j, m, n;
+	CSTree Q[100];
+	TElemType_CS key[100] = {};									//将最左边的结点记录下来 
+	
+	i = j = 0;
+	m = n = 0;
+	
+	if(T && T->data!=e)
+	{
+		Q[j++] = T;
+		key[n++] = T->data;
+		
+		while(i<j)
+		{
+			while(Q[i])
+			{
+				
+				if(Q[i]->firstchild)
+				{
+					Q[j++] = Q[i]->firstchild;
+					key[n++] = Q[i]->firstchild->data;				
+				}
+				
+				if(mark==0)
+				{
+					if(Q[i]->data==e && Q[i]->data==key[m])
+						return '\0';
+					
+					if(Q[i]->nextsibling && Q[i]->nextsibling->data==e)
+						return Q[i]->data;
+				}
+				else
+				{
+					if(Q[i]->data==e && Q[i]->nextsibling)
+						return Q[i]->nextsibling->data;
+				}
+				
+				Q[i] = Q[i]->nextsibling;			
+			}
+			
+			i++;
+			m++;
+		}		
+	}
+	
+	return '\0';
+}
+```
+
+
+
+### 返回结点p的孩子结点（子树）个数，返回负数代表结点p不存在
+
+```c++
+int ChildCount_CS(CSTree T, TElemType_CS p)
+{
+	int i, j, count;
+	CSTree Q[100];
+	
+	count = -1;
+	i = j = 0;
+	
+	if(T)
+	{
+		Q[j++] = T;
+		
+		while(i<j)
+		{
+			while(Q[i] && Q[i]->data!=p)
+			{
+				if(Q[i]->firstchild)
+					Q[j++] = Q[i]->firstchild;
+				
+				Q[i] = Q[i]->nextsibling;
+			}
+			
+			if(Q[i] && Q[i]->data==p)
+				break;
+				
+			i++;
+		}
+		
+		if(i<j)								//找到了p
+		{
+			count = 0;
+			if(Q[i]->firstchild)
+			{
+				Q[i] = Q[i]->firstchild;
+				while(Q[i])
+				{
+					count++;
+					Q[i] = Q[i]->nextsibling;
+				}
+			}
+		} 
+	}
+	
+	return count;
+}
+```
+
+
+
+### 返回树T中结点e的第i个孩子（层序计数）的指针
+
+```c++
+CSTree ChildSeat_CS(CSTree T, TElemType_CS e, int i)
+{
+	TElemType_CS tmp;
+	CSTree p;
+	
+	tmp = ChildValue_CS(T, e, i);
+	
+	if(tmp)								//可以找到e的第i个孩子
+		p = Order_CS(T, tmp);
+	
+	return p;
+} 
+```
+
+
+
+### 将树t插入为树T中e结点的第i棵子树（层序计数），i=0定义为最后一棵子树
+
+```c++
+Status InsertTree_CS(CSTree T, TElemType_CS e, int i, CSTree t)
+{
+	int j, k0;
+	CSTree p, q;
+	
+	k0 = ChildCount_CS(T, e);
+	
+	if(k0<0 || i<0 || i>k0+1)
+		return ERROR;
+	
+	if(i==0)
+		j = k0+1;
+	else
+		j = i;
+	
+	if(j==1)
+	{
+		p = Order_CS(T, e);
+		t->nextsibling = p->firstchild;
+		p->firstchild = t;
+	}
+	else
+	{
+		q = ChildSeat_CS(T, e, j-1);
+		t->nextsibling = q->nextsibling;
+		q->nextsibling = t;
+	}
+	
+	return OK;
+}
+```
+
+
+
+### 删除树T中e结点的第i棵子树
+
+```c++
+Status DeleteTree_CS(CSTree T, TElemType_CS e, int i)
+{
+	TElemType_CS tmp;
+	CSTree p, q;
+	
+	if(i==1)
+	{
+		p = Order_CS(T, e);
+		if(!p)
+			return ERROR;
+		q = p->firstchild->nextsibling;
+		p->firstchild->nextsibling = NULL;
+		ClearTree_CS(&(p->firstchild));
+		p->firstchild = q;
+	}
+	else
+	{
+		p = ChildSeat_CS(T, e, i-1);
+		if(!p)
+			return ERROR;
+		q = p->nextsibling->nextsibling;
+		p->nextsibling->nextsibling = NULL;
+		ClearTree_CS(&(p->nextsibling));
+		p->nextsibling = q;
+	}	
+	
+	return OK;
+}
+```
+
+
+
+### 层序遍历树
+
+```c++
+void LevelOrderTraverse_CS(CSTree T, void(Visit)(TElemType_CS))
+{
+	int i, j;
+	CSTree Q[100];
+	
+	i = j = 0;
+	
+	if(T)
+		Q[j++] = T;
+	
+	while(i<j)
+	{
+		while(Q[i])
+		{
+			Visit(Q[i]->data);
+		
+			if(Q[i]->firstchild)
+				Q[j++] = Q[i]->firstchild;
+			
+			Q[i] = Q[i]->nextsibling;
+		}
+		
+		i++;
+	}	
+}
+```
+
+
+
+### 前序遍历树
+
+```c++
+void PreOrderTraverse_CS(CSTree T, void(Visit)(TElemType_CS))
+{
+	if(T)
+	{
+		Visit(T->data);
+		PreOrderTraverse_CS(T->firstchild, Visit);
+		PreOrderTraverse_CS(T->nextsibling, Visit);
+	}
+}
+```
+
+
+
+### 中序遍历树
+
+```c++
+void InOrderTraverse_CS(CSTree T, void(Visit)(TElemType_CS))
+{
+	if(T)
+	{
+		InOrderTraverse_CS(T->firstchild, Visit);
+		Visit(T->data);
+		InOrderTraverse_CS(T->nextsibling, Visit);
+	}
+}
+```
+
+
+
+### 按树的结构打印树
+
+```c++
+void Print_CS(CSTree T)
+{
+	typedef struct
+	{
+		TElemType_CS e;
+		int x;
+		int y;	
+	}Node;
+	
+	SqStack S;
+	SElemType_Sq tmp;
+	Node node[100];
+	int row, col, row_max, k, i, j;
+	char a[100][100] = {};
+	int m, n;
+	
+	k = 0;	
+		
+	if(T)
+	{
+		InitStack_Sq(&S);
+		Push_Sq(&S, T);
+		
+		row = col = 0;
+		row_max = 0;
+		
+		while(!StackEmpty_Sq(S))
+		{
+			GetTop_Sq(S, &tmp);
+			
+			node[k].e = tmp->data;
+			node[k].x = col;
+			node[k].y = row;
+			k++;
+			
+			while(tmp->firstchild)
+			{
+				Push_Sq(&S, tmp->firstchild);
+				row++;
+				if(row_max<row)
+					row_max = row;
+				GetTop_Sq(S, &tmp);
+				
+				node[k].e = tmp->data;
+				node[k].x = col;
+				node[k].y = row;
+				k++;		
+			}
+			
+			Pop_Sq(&S, &tmp);
+						
+			if(tmp->nextsibling)
+			{
+				Push_Sq(&S, tmp->nextsibling);
+				col++;		
+			}
+			else
+			{
+				while(!StackEmpty_Sq(S))
+				{
+					Pop_Sq(&S, &tmp);
+					row--;
+														
+					if(tmp->nextsibling)
+					{
+						Push_Sq(&S, tmp->nextsibling);
+						col++;
+						break;
+					}				
+				}
+			}
+		}
+	
+		for(i=0; i<k; i++)
+			a[node[i].x][3*node[i].y] = node[i].e;
+		
+		for(i=0; i<=col; i++)
+		{
+			for(j=0; j<=3*row_max; j++)
+			{
+				if(a[i][j])
+					printf("%c", a[i][j]);
+				else
+					printf(".");
+			}
+		
+			printf("\n");
+		}			
+	}
+	else
+		printf("空树无法打印！！\n");
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
